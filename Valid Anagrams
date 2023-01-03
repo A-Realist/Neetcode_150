@@ -1,0 +1,53 @@
+// Sorting the array lexicographically and checking one by one
+    public boolean isAnagram(String s, String t) {
+        boolean flag = true;
+
+        char S[] = s.toCharArray();
+        char T[] = t.toCharArray();
+
+        Arrays.sort(S);
+        Arrays.sort(T);
+
+        if(S.length == T.length){
+            int i = 0, j = 0;
+
+            while(i<S.length && j<T.length){
+                if(S[i] != T[j]) flag = false;
+
+                i++;j++;
+            }
+        }else{
+            flag = false;
+        }
+
+        return flag;
+    }
+
+// Using HashMap to store the frequency of characters and then removing it. If the size of the map is 0, it is an anagram.
+    public boolean isAnagram(String s, String t) {
+        HashMap <Character, Integer> map = new HashMap<>();
+
+        // Adding the characters of 1st string into the map.
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+
+        //Using the second string to reduce the frequency of characters in the map.
+        for(int i=0; i<t.length(); i++){
+            char ch = t.charAt(i);
+
+            if(map.containsKey(ch) == false){
+                return false;
+            }
+            else if(map.get(ch) == 1){
+                map.remove(ch);
+            }
+            else{
+                map.put(ch, map.get(ch) - 1);
+            }
+        }
+
+        // If the size of the map is 0, it is a valid anagram.
+        return map.size() == 0;
+    }
