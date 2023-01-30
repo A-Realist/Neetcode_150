@@ -1,0 +1,39 @@
+// Brute Force
+Time Complexity - O(n^2): because for every node a recursive function is being called to calculate the height.
+
+class Solution {
+    public int diameterOfBinaryTree(TreeNode root) {
+        if(root == null) return 0;
+        int dl = diameterOfBinaryTree(root.left);
+        int dr = diameterOfBinaryTree(root.right);
+        int cur = height(root.left) + height(root.right);
+
+        return Math.max(cur, Math.max(dl, dr));
+    }
+
+    public int height(TreeNode root){
+        if(root == null) return 0;
+        return Math.max(height(root.left), height(root.right)) + 1;
+    }
+}
+
+//Efficient Approach
+Time Complexity - O(N)
+
+class Solution {
+    int ans = 0;
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        height(root);
+        return ans;
+    }
+
+    private int height(TreeNode root){
+        if(root == null) return 0;
+        int left = height(root.left);
+        int right = height(root.right);
+        ans = Math.max(ans, left+right);
+
+        return Math.max(left, right) + 1;
+    }
+}
