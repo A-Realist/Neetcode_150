@@ -1,0 +1,28 @@
+//Three steps to satify a balanced binary tree-
+1. Calculate yiour height
+2. Check if you are yourself balanced.
+3.If you are imbalanced, change the overall height of tree.
+
+class Solution {
+    boolean ans = true;
+    public boolean isBalanced(TreeNode root) {
+        solve(root);
+        return ans;
+    }
+
+    public int solve(TreeNode root){
+        if(root == null) return 0;
+        int left = solve(root.left);
+        int right = solve(root.right);
+
+        int gap = Math.abs(left-right);
+        if(gap > 1){
+            ans = false;
+        } 
+
+        return Math.max(left, right) + 1;
+    }
+}
+
+Time Complexity - O(n)
+Space Complexity - O(log(n))
