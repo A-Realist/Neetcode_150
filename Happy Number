@@ -1,0 +1,23 @@
+class Solution {
+    public boolean isHappy(int n) {
+
+        //This is made to check if the sum we are calculating is present or not
+        HashSet <Integer> seen = new HashSet<>();
+        //We will check if a number is happy or not. If not, we will keep running the loop.
+        while(n != 1){
+            int current = n, sum = 0;
+            while(current != 0){
+                int rem = current % 10;
+                sum = sum + (rem*rem);
+                current /= 10;
+            }
+
+            //If the sum is already present in the hash set, that means we are looping
+            if(seen.contains(sum)) return false;
+            seen.add(sum);
+            n = sum;
+        }
+
+        return true;
+    }
+}
