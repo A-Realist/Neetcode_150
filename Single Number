@@ -1,0 +1,26 @@
+class Solution {
+    // public int singleNumber(int[] nums) {
+    //     //Hashing
+    //     HashSet <Integer> set = new HashSet<>();
+    //     for(int i: nums){
+    //         if(set.contains(i)) set.remove(i);
+    //         else set.add(i);
+    //     }
+
+    //     for(int i:set){
+    //         return i;
+    //     }
+
+    //     return -1;
+    // }
+
+  //Bit Manipulation
+  //XOR of 2 same numebrs is 0. XOR of 2 different number is 1. We will XOR all the elements of the array. The remaining number will be the answwer.
+    public int singleNumber(int[] nums) {
+        int ans = 0;
+        for (int i = 0; i < nums.length; i++) {
+            ans = ans ^ nums[i];
+        }
+        return ans;
+    }
+}
