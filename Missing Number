@@ -1,0 +1,26 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+        // #Approach-1: Using Hashing
+        // HashSet <Integer> set = new HashSet<Integer>();
+        // for(int i:nums){
+        //     set.add(i);
+        // }
+
+        // for(int i=0; i<=nums.length; i++){
+        //     if(!set.contains(i)){
+        //         return i;
+        //     }
+        // }
+
+        // return -1;
+
+        //Arrproach-2: USing Gauss's law which states that the sum of natural   numbers from 1-n is (n*(n-1))/2
+        int sum = 0;
+        for(int i: nums){
+            sum += i;
+        }
+
+        int n = nums.length+1;
+        return (n*(n-1))/2 - sum;
+    }
+}
