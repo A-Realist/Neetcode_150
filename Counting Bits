@@ -1,0 +1,37 @@
+class Solution {
+    // Approach-1: Kernighan's Algo
+    //This approach uses kernighan's algorithm to calculate all the bits and then storing it in a new array of length n+1 
+    // public int[] countBits(int n) {
+    //     int ans[] = new int[n+1];
+
+    //     for(int i=0; i<ans.length; i++){
+    //         int ind = bitsCounter(i);
+    //         ans[i] = ind;
+    //     }
+
+    //     return ans;
+    // }
+
+    // public int bitsCounter(int n){
+    //     int counter = 0;
+    //     while(n != 0){
+    //         int rsbm = (n & -n);
+    //         n -= rsbm;
+    //         counter ++;
+    //     }
+
+    //     return counter;
+    // }
+    
+    
+    // Approach-2 
+        int dp[] = new int[n+1];
+        dp[0] = 0;
+
+        for(int i=1; i<=n; i++){
+                    //dp[i/2]: x/2 which is y and i%2 is 1, if the number is            odd else 0 if it is even
+            dp[i] = dp[i/2] + i%2;
+        }
+
+        return dp;
+}
